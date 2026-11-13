@@ -1,29 +1,67 @@
-import React from 'react'
+import { useRef } from 'react';
+import useReveal from '../hooks/useReveal.js';
+import { EMAIL, LOCATION, navLinks, socials } from '../constants/index.js';
+import { handleAnchorClick } from '../lib/scroll.js';
 
 const Footer = () => {
+    const ref = useRef(null);
+    useReveal(ref);
+
     return (
-        <section className="c-space pt-7 pb-3 border-t border-black-300 flex justify-between items-center flex-wrap gap-5">
-            <div className="text-white-500 flex gap-2">
-                <p> Terms & Conditions</p>
-                <p>|</p>
-                <p>Privacy Policy</p>
+        <footer ref={ref} className="max-w-7xl mx-auto c-space">
+            <div data-reveal="stagger" data-start="top 98%" className="footer-top">
+                <div className="flex flex-col gap-4 max-w-sm">
+                    <a href="#home" onClick={handleAnchorClick} className="brand">
+                        <img src="/favicon.svg" alt="" width="28" height="28" className="brand__mark" />
+                        <span>Anoop</span>
+                    </a>
+                    <p className="text-white-600 leading-relaxed">
+                        Computer Science undergraduate building full-stack and AI-driven systems.
+                    </p>
+                    <a href={`mailto:${EMAIL}`} className="contact-link w-fit">
+                        {EMAIL}
+                    </a>
+                </div>
+
+                <nav aria-label="Footer" className="footer-col">
+                    <p className="footer-col__title">Sitemap</p>
+                    <ul>
+                        {navLinks.map(({ id, name, href }) => (
+                            <li key={id}>
+                                <a href={href} onClick={handleAnchorClick} className="footer-link">
+                                    {name}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+
+                <div className="footer-col">
+                    <p className="footer-col__title">Elsewhere</p>
+                    <ul>
+                        {socials.map(({ label, href, icon }) => (
+                            <li key={label}>
+                                <a href={href} target="_blank" rel="noopener noreferrer" className="footer-link">
+                                    <img src={icon} alt="" width="16" height="16" className="opacity-70" />
+                                    {label}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
 
-            <div className="flex gap-3">
-                <a href="https://github.com/arthavgonda" target="_blank" rel="noopener noreferrer" className="social-icon">
-                    <img src="/assets/github.svg" alt="GitHub Icon" className="w-1/2 h-1/2"/>
-                </a>
-                <a href="https://www.linkedin.com/in/anoopsnegi/" target="_blank" rel="noopener noreferrer" className="social-icon">
-                    <img src="/assets/linkedin.svg" alt="Linkedin Icon" className="w-1/2 h-1/2"/>
-                </a>
-                <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" className="social-icon">
-                    <img src="/assets/twitter.svg" alt="Twitter Icon" className="w-1/2 h-1/2"/>
+            <div className="footer-bottom">
+                <p>© {new Date().getFullYear()} Anoop. All rights reserved.</p>
+                <p>
+                    {LOCATION}
+                </p>
+                <a href="#home" onClick={handleAnchorClick} className="footer-link">
+                    Back to top <span aria-hidden="true">↑</span>
                 </a>
             </div>
-
-            <p className="text-white-500">2025 All rights reserved</p>
-        </section>
-    )
-}
+        </footer>
+    );
+};
 
 export default Footer;

@@ -1,18 +1,13 @@
-const Alert = ({ type, text }) => {
+// Always mounted so it can animate out as well as in (see .toast in index.css).
+const Alert = ({ show, type, text }) => {
+    const danger = type === 'danger';
+
     return (
-        <div className="fixed bottom-5 right-5 flex justify-center items-center z-50">
-            <div
-                className={`p-2 ${
-                    type === 'danger' ? 'bg-red-800' : 'bg-blue-800'
-                } items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex rounded-md p-5`}
-                role="alert">
-                <p
-                    className={`flex rounded-full ${
-                        type === 'danger' ? 'bg-red-500' : 'bg-blue-500'
-                    } uppercase px-2 py-1 text-xs font-semibold mr-3`}>
-                    {type === 'danger' ? 'Failed' : 'Success'}
-                </p>
-                <p className="mr-2 text-left">{text}</p>
+        <div className="toast fixed bottom-5 right-5 left-5 sm:left-auto z-50" data-show={show} role="status" aria-live="polite">
+            <div className="toast__body">
+                <span className={`toast__dot ${danger ? 'bg-red-500' : 'bg-green-500'}`} aria-hidden="true" />
+                <p className="font-medium text-white">{danger ? 'Not sent' : 'Sent'}</p>
+                <p className="text-white-600">{text}</p>
             </div>
         </div>
     );

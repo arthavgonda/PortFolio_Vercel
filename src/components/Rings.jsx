@@ -1,6 +1,5 @@
-import { useGSAP } from '@gsap/react';
 import { useTexture } from '@react-three/drei';
-import gsap from 'gsap';
+import { gsap, useGSAP } from '../lib/gsap.js';
 import { useCallback, useRef } from 'react';
 
 const Rings = ({ position }) => {
@@ -12,7 +11,7 @@ const Rings = ({ position }) => {
         }
     }, []);
 
-    const texture = useTexture('textures/rings.png');
+    const texture = useTexture('/textures/rings.webp');
 
     useGSAP(() => {
         if (refList.current.length === 0) return;

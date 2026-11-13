@@ -1,31 +1,16 @@
-import {Html, useProgress} from '@react-three/drei';
+import { Html } from '@react-three/drei';
 
-const CanvasLoader = () => {
-    const {progress, setProgress} = useProgress();
-
-    return (
-        <Html
-        as="div"
-        center
-        style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
-        }}
-        >
-            <span className="canva-loader"/>
-            <p style={{
-                fontSize: '14',
-                color: '#f1f1f1',
-                fontWeight: '800',
-                marginTop: 40
-            }}
-            >
-                {progress != 0 ? `${progress.toFixed(2)}%` : `Loading...`}
-            </p>
-        </Html>
-    )
-}
+// Suspense fallback shown inside a canvas while its models/textures stream in.
+// Deliberately not subscribed to drei's useProgress: loaders report progress
+// synchronously during render, which made React warn about a setState inside
+// another component's render. The splash screen shows real progress instead.
+const CanvasLoader = () => (
+    <Html center>
+        <div className="flex flex-col items-center gap-3 text-white-600 text-sm whitespace-nowrap" role="status">
+            <span className="canvas-loader" aria-hidden="true" />
+            <span>Loading…</span>
+        </div>
+    </Html>
+);
 
 export default CanvasLoader;

@@ -2,9 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>03actual</title>
+    <title>Anoop — Developer Portfolio</title>
+    <meta
+      name="description"
+      content="Anoop is a Computer Science undergraduate building full-stack and AI-driven systems: machine learning pipelines, backend APIs and interactive web interfaces." />
+    <meta name="theme-color" content="#010103" />
+    <meta name="color-scheme" content="dark" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Anoop — Developer Portfolio" />
+    <meta
+      property="og:description"
+      content="Full-stack and AI-driven systems: machine learning, backend APIs and interactive web interfaces." />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Start the critical downloads in parallel with the JS bundle instead of
+         after React has rendered: the font, the hero model, and the Draco
+         decoder needed to unpack it. -->
+    <link rel="preload" href="/fonts/GeneralSans-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/models/hacker-room.glb" as="fetch" crossorigin />
+    <link rel="preload" href="/draco/draco_wasm_wrapper.js" as="fetch" crossorigin />
+    <link rel="preload" href="/draco/draco_decoder.wasm" as="fetch" crossorigin />
   </head>
   <body>
     <div id="root"></div>
